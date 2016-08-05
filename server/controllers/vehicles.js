@@ -88,7 +88,7 @@ const getFuelRange = (req, res) => {
       } else {
         var responseData = response.body.data;
         var data = {
-          percent: responseData.tankLevel.value
+          percent: (responseData.tankLevel.value === 'null') ? null : responseData.tankLevel.value
         }
         res.status(200).json(data);
       }
@@ -114,7 +114,7 @@ const getBatteryRange = (req, res) => {
       } else {
         var responseData = response.body.data;
         var data = {
-          percent: responseData.batteryLevel.value
+          percent: (responseData.batteryLevel.value === 'null') ? null : responseData.batteryLevel.value
         }
         res.status(200).json(data);
       }

@@ -83,4 +83,88 @@ describe ('VehiclesApi Functionality', () => {
       });  
   })
 
+  it('GET to /vehicles/:id/fuel should respond with status 404 for invalid id', (done) => {
+    request(server)
+      .get('/vehicles/' + noId + '/fuel')
+      .end((err, res) => {
+        expect(res.status).to.equal(404);
+        expect(res.body.status).to.exist;
+        done();
+      });  
+  })
+
+  it('GET to /vehicles/:id/fuel for valid id 1234 should respond with status 200 and have percent property to be not null', (done) => {
+    request(server)
+      .get('/vehicles/' + id1 + '/fuel')
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.property('percent');
+        expect(res.body.percent).not.to.be.null;
+        done();
+      });  
+  })
+
+  it('GET to /vehicles/:id/fuel for valid id 1235 should have percent property to be null', (done) => {
+    request(server)
+      .get('/vehicles/' + id2 + '/fuel')
+      .end((err, res) => {
+        expect(res.body).to.have.property('percent');
+        expect(res.body.percent).to.be.null;
+        done();
+      });  
+  })
+
+  it('GET to /vehicles/:id/battery should respond with status 404 for invalid id', (done) => {
+    request(server)
+      .get('/vehicles/' + noId + '/battery')
+      .end((err, res) => {
+        expect(res.status).to.equal(404);
+        expect(res.body.status).to.exist;
+        done();
+      });  
+  })
+
+  it('GET to /vehicles/:id/battery for valid id 1234 should respond with status 200 and have percent property to be null', (done) => {
+    request(server)
+      .get('/vehicles/' + id1 + '/battery')
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.property('percent');
+        expect(res.body.percent).to.be.null;
+        done();
+      });  
+  })
+
+  it('GET to /vehicles/:id/battery for valid id 1235 should have percent property not to be null', (done) => {
+    request(server)
+      .get('/vehicles/' + id2 + '/battery')
+      .end((err, res) => {
+        expect(res.body).to.have.property('percent');
+        expect(res.body.percent).not.to.be.null;
+        done();
+      });  
+  })
+
+  it('POST to /vehicles/:id/engine should respond with status 404 for invalid id', (done) => {
+    request(server)
+      .post('/vehicles/' + noId + '/engine')
+      .send({action: 'START'})
+      .end((err, res) => {
+        expect(res.status).to.equal(404);
+        expect(res.body.status).to.exist;
+        done();
+      });  
+  })
+
+  it('POST to /vehicles/:id/engine for valid id 1234 should respond with status 200 and have status property', (done) => {
+    request(server)
+      .post('/vehicles/' + id1 + '/engine')
+      .send({action: 'START'})
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.property('status');
+        done();
+      });  
+  })
+
 })
