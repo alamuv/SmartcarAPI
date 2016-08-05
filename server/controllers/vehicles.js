@@ -5,6 +5,9 @@ var obj = {
   responseType: 'JSON'
 };
 
+// getVehiclesInfo is invoked on /vehicles/:id route
+// it makes http post request to gmApi server /getVehicleInfoService endpoint
+// gets the response and adapts it to the format required by SmartAPI
 const getVehiclesInfo = (req, res) => {
   obj.id = req.params.id;
 
@@ -38,6 +41,9 @@ const getVehiclesInfo = (req, res) => {
 
 };
 
+// getDoorsStatus is invoked on /vehicles/:id/doors route
+// it makes http post request to gmApi server /getSecurityStatusService endpoint
+// gets the response and adapts it to the format required by SmartAPI
 const getDoorsStatus = (req, res) => {
   obj.id = req.params.id;
 
@@ -69,6 +75,9 @@ const getDoorsStatus = (req, res) => {
     })
 };
 
+// getFuelRange is invoked on /vehicles/:id/fuel route
+// it makes http post request to gmApi server /getEnergyService endpoint
+// gets the response and adapts it to the format required by SmartAPI
 const getFuelRange = (req, res) => {
   obj.id = req.params.id;
 
@@ -95,6 +104,9 @@ const getFuelRange = (req, res) => {
     })
 };
 
+// getBatteryRange is invoked on /vehicles/:id/battery route
+// it makes http post request to gmApi server /getEnergyService endpoint
+// gets the response and adapts it to the format required by SmartAPI
 const getBatteryRange = (req, res) => {
   obj.id = req.params.id;
 
@@ -121,6 +133,9 @@ const getBatteryRange = (req, res) => {
     })
 };
 
+// getBatteryRange is invoked on /vehicles/:id/engine route
+// it makes http post request to gmApi server /actionEngineService endpoint
+// gets the response and adapts it to the format required by SmartAPI
 const postEngine = (req, res) => {
   obj.id = req.params.id;
   obj.command = req.body.action+'_VEHICLE';
