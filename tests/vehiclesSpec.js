@@ -5,7 +5,7 @@ const gmApiUrl = require('../config/gmApiConfig');
 
 describe ('VehiclesApi Functionality', () => {
 
-  it('GET to /:id', () => {
-    
+  it('GET to /vehicles/:id should respond with status 404 for invalid id', () => {
+
   })
 })
